@@ -1,3 +1,3 @@
 # Finance control
 
-The application, whick allows you to manage your investments
+The application, which allows you to manage your investments
