@@ -69,6 +69,9 @@ Edit investment| User can edit information about investment
 #### 3.2. Non-Functional requirements
 
 > The project should give security, centralized access to the information about investments and provide comfortable interface for convenient work
+> Finance-control guarantees an irrevocable deletion of user's data, which was deleted by user in his account page.
+> It is forbidden to use personal information in proccess of authentication to provide personal security.
+> If it is a law request to get account data, Finance Control will give account information. Before that requestors must prove that the account is a property of their requiested user. 
 
 ### 4. Analogues
 
