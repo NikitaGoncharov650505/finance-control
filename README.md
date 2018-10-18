@@ -6,7 +6,7 @@ The application, which allows you to manage your investments
 - [Requirements](https://github.com/NikitaGoncharov650505/finance-control/tree/master/requirements)
 - [Mockups](https://github.com/NikitaGoncharov650505/finance-control/tree/master/mockups)
 - [Use case](https://github.com/NikitaGoncharov650505/finance-control/tree/master/documentation/Use%20Case)
-- [Flow of events](https://github.com/NikitaGoncharov650505/finance-control/tree/master/documentation/Flow%20Events)
+- [Flow of events](https://github.com/NikitaGoncharov650505/finance-control/tree/master/documentation/Flow%20of%20Events)
 - [Activity diagram](https://github.com/NikitaGoncharov650505/finance-control/tree/master/documentation/Activity%20Diagram)
 - [Sequence diagram](https://github.com/NikitaGoncharov650505/finance-control/tree/master/documentation/Sequence%20Diagram)
 - [State diagram](https://github.com/NikitaGoncharov650505/finance-control/tree/master/documentation/State%20Diagram)
