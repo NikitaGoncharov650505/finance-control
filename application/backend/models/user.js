@@ -13,7 +13,7 @@ const userSchema = new mongoose.Schema(
     {
         login: { type: String },
         password: { type: String },
-        investments: [investmentSchema],
+        investments: { type: Array },
     },
     { timestamps: true }
 );

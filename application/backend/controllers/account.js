@@ -1,9 +1,9 @@
-const userService = require('../models/user');
+const accountService = require('../models/user');
 
 const signin = async (ctx) => {
     const { login, password } = ctx.request.body;
     console.log(ctx.request.body);
-    const user = await userService.findOne({ "login": login });
+    const user = await accountService.findOne({ "login": login });
     console.log(user);
     if (user && user.password === password) {
         ctx.body = { status: 'ok'};
@@ -15,12 +15,12 @@ const signin = async (ctx) => {
 const signup = async (ctx) => {
     const { login, password, confirmedPassword } = ctx.request.body;
     console.log(ctx.request.body);
-    const dbUser = await userService.findOne({ "login": login });
+    const dbUser = await accountService.findOne({ "login": login });
     console.log(dbUser);
     if (dbUser) {
         ctx.body = { status: 'User with this login exists'};
     } else if (!dbUser && password === confirmedPassword) {
-        const newUser = await userService.create({
+        const newUser = await accountService.create({
             login: login,
             password: password,
             investments: [],
