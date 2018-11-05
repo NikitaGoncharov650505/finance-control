@@ -27,18 +27,49 @@ const getInvestments = async (ctx) => {
 };
 
 const updateInvestment = async (ctx) => {
-    const id = ctx.params.id;
-    const dbInvestment = await investment.findById(id);
-    dbInvestment.investmentAmount = '999';
-    const updatedInvestment = await dbInvestment.save();
-    ctx.body = updatedInvestment;
+    const {
+        id,
+        index,
+        investmentName,
+        investmentAmount,
+        investmentLink,
+        investmentDescription
+    } = ctx.request.body;
+    const user = await userService.findById(id);
+    console.log(user);
+    /*user.investments[index].investmentName = investmentName;
+    user.investments[index].investmentAmount = investmentAmount;
+    user.investments[index].investmentLink = investmentLink;
+    user.investments[index].investmentDescription = investmentDescription;*/
+    if (index > -1 && index <= user.investments.length - 1) {
+        user.investments.splice(index, 1);
+        user.investments.push({
+            investmentName,
+            investmentAmount,
+            investmentLink,
+            investmentDescription
+        });
+        const updatedUser = await user.save()
+        ctx.body = { updatedUser };
+    } else {
+        ctx.body = {};
+    }
 };
 
 const deleteInvestment = async (ctx) => {
-    const id = ctx.params.id
-    const dbInvestment = await investment.findById(id)
-    const deletedInvestment = await dbInvestment.remove()
-    ctx.body = deletedInvestment;
+    const {
+        id,
+        index
+    } = ctx.request.body;
+    const user = await userService.findById(id);
+    if (index > -1 && index <= user.investments.length - 1) {
+        user.investments.splice(index, 1);
+        const updatedUser = await user.save()
+        ctx.body = { updatedUser };
+    } else {
+        ctx.body = {};
+    }
+    
 };
 
 module.exports = {
