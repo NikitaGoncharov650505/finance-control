@@ -1,15 +1,19 @@
 import React, { Component } from 'react';
+import { Route, Switch } from 'react-router-dom';
 import './App.css';
-import Investments from './components/investments/investments';
+import SignIn from './components/SignIn/SignIn';
+import SignUp from './components/SignUp/SignUp';
+import Landing from './components/Landing/Landing';
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <Investments />
-        <Investments />
-        <Investments />
-        <Investments />
+      <div>
+        <Switch>
+            <Route exact path="/" component={Landing} />
+            <Route path="/sign-in" component={SignIn} />
+            <Route path="/sign-up" component={SignUp} />
+        </Switch>
       </div>
     );
   }

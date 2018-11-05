@@ -1,0 +1,23 @@
+.header {
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border: 1px solid gray;
+}
+
+.navigation {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navigation-link {
+    color: gray;
+    text-decoration: none;
+}
+
+.navigation-link:hover {
+    color: black;
+}
