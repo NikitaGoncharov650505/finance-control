@@ -4,11 +4,35 @@ const bodyParser = require('koa-body');
 const Router = require('koa-router');
 const jwt = require('jsonwebtoken');
 const koaJWT = require('koa-jwt');
-const cors = require('koa-cors')
+const cors = require('koa-cors');
+const mongoose = require('mongoose'); 
 
 const router = new Router();
 
 const app = new Koa();
+
+
+
+
+
+mongoose.connect('mongodb://testUser:testUser123456789@ds161653.mlab.com:61653/test2');
+const userSchema = new mongoose.Schema(
+    {
+        id: { type: String },
+        username: { type: String },
+        password: { type: String },
+    },
+    { timestamps: true }
+);
+
+const userModel = mongoose.model('users', userSchema);
+
+
+
+
+
+
+
 
 const koaOptions = {
     origin: true,
@@ -17,29 +41,16 @@ const koaOptions = {
 
 app.use(cors(koaOptions));
 
-let users = [
-    {
-        id: 1,
-        username: 'test',
-        password: 'asdf123'
-    },
-    {
-        id: 2,
-        username: 'test2',
-        password: 'asdf12345'
-    }
-];
-
-
 
 const jwtMiddleware = koaJWT({ secret: 'gna secret'});
 
-router.post('/login', bodyParser(), (ctx) => {
+router.post('/login', bodyParser(), async (ctx) => {
     const { username, password } = ctx.request.body;
 
-    const user = users[0];
-    if (username == user.username && password == user.password) {
-        const token = jwt.sign({ id: user.id, username: user.username }, 'gna secret', { expiresIn: 129600 }); // Sigining the token
+    const userDB = await userModel.findOne({ "username": username });
+
+    if (username == userDB.username && password == userDB.password) {
+        const token = jwt.sign({ id: userDB.id, username: userDB.username }, 'gna secret', { expiresIn: 129600 }); // Sigining the token
         ctx.body = {token};
     } else {
         ctx.status = 401;
