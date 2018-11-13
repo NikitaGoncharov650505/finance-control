@@ -24,16 +24,23 @@ const userModel = mongoose.model('users', userSchema);
 
 router.post('/login', bodyParser(), async (ctx) => {
     const { username, password } = ctx.request.body;
-
     const userDB = await userModel.findOne({ "username": username });
-
     if (username == userDB.username && password == userDB.password) {
-        const token = jwt.sign({ id: userDB.id, username: userDB.username }, 'gna secret', { expiresIn: 129600 }); // Sigining the token
+        const token = jwt.sign({ id: userDB._id, username: userDB.username }, 'gna secret', { expiresIn: 129600 }); // Sigining the token
         ctx.body = {token};
     } else {
         ctx.status = 401;
     }
    
+});
+
+router.post('/signup', bodyParser(), async (ctx) => {
+    const { username, password } = ctx.request.body;
+    const user = await userModel.create({ username, password });
+    if (!user) {
+        return;
+    }
+    ctx.body = { user }   
 });
 
 router.get('/', jwtMiddleware, (ctx) => {

@@ -14,6 +14,7 @@ class Landing extends Component {
         return (
             <div className="center">
                 <a href="/login">Sign In</a> 
+                <a href="/signup">Sign Up</a>
             </div>
         );
     }

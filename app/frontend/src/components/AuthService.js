@@ -21,6 +21,18 @@ export default class AuthService {
         })
     }
 
+    signUp(username, password) {
+        return this.fetch(`${this.domain}/signup`, {
+            method: 'POST',
+            body: JSON.stringify({
+                username,
+                password
+            })
+        }).then(res => {
+            return res;
+        })
+    }
+
     loggedIn() {
         // Checks if there is a saved token and it's still valid
         const token = this.getToken()
