@@ -26,6 +26,8 @@ const investmentSchema = new mongoose.Schema(
         userId: { type: String },
         investedAmount: { type: String },
         investmentName: { type: String },
+        investmentLink: { type: String },
+        investmentDescription: { type: String},
     },
     { timestamps: true }
 );
@@ -54,8 +56,8 @@ router.post('/signup', bodyParser(), async (ctx) => {
 });
 
 router.post('/create-investment', jwtMiddleware, bodyParser(), async (ctx) => {
-    const { userId, investedAmount, investmentName } = ctx.request.body;
-    const investment = await investmentModel.create({ userId, investedAmount, investmentName });
+    const { userId, investedAmount, investmentName, investmentLink, investmentDescription } = ctx.request.body;
+    const investment = await investmentModel.create({ userId, investedAmount, investmentName, investmentLink, investmentDescription });
     if (!investment) {
         return;
     }
@@ -71,22 +73,22 @@ router.post('/delete-investment', jwtMiddleware, bodyParser(), async (ctx) => {
     ctx.body = { investment }
 });
 
-router.post('/delete-investment', jwtMiddleware, bodyParser(), async (ctx) => {
-    const { investmentId } = ctx.request.body;
-    const investment = await investmentModel.remove({ "_id": investmentId });
+router.post('/edit-investment', jwtMiddleware, bodyParser(), async (ctx) => {
+    const { investmentId, investedAmount, investmentName, investmentLink, investmentDescription } = ctx.request.body;
+    const investment = await investmentModel.update({ "_id": investmentId }, { $set: { investedAmount, investmentName, investmentLink, investmentDescription }});
     if (!investment) {
         return;
     }
     ctx.body = { investment }
 });
 
-router.post('/edit-investment', jwtMiddleware, bodyParser(), async (ctx) => {
-    const { investmentId, investedAmount, investmentName } = ctx.request.body;
-    const investment = await investmentModel.update({ "_id": investmentId }, { $set: { investedAmount, investmentName }});
-    if (!investment) {
+router.post('/get-investments', jwtMiddleware, bodyParser(), async(ctx) => {
+    const { userId } = ctx.request.body;
+    const investments = await investmentModel.find({ userId });
+    if (!investments) {
         return;
     }
-    ctx.body = { investment }
+    ctx.body = { investments };
 });
 
 router.get('/', jwtMiddleware, (ctx) => {

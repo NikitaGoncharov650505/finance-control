@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Header from './components/Header/Header';
 import AuthService from './components/AuthService';
 import withAuth from './components/withAuth';
+import Account from './components/Account/Account.js';
 import './App.css';
 
 const Auth = new AuthService();
@@ -17,9 +18,14 @@ class App extends Component {
 
   render() {
     return (
-      <div>
-        <Header handleLogout={this.handleLogout} />
-      </div>
+      <Router>
+        <div>
+          <Header handleLogout={this.handleLogout} />
+          <div>
+              <Route path="/account" render={() => <Account user={this.props.user} />} />  
+            </div>
+        </div>
+      </Router>
     );
   }
 }
