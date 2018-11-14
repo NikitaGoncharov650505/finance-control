@@ -75,12 +75,11 @@ class EditInvestment extends Component {
                     <Col
                         xs={{ size: 8, offset: 2 }}
                         sm={{ size: 4, offset: 4 }}
-                        md={{ size: 3, offset: 1 }}
-                        lg={{ size: 3, offset: 1 }}
-                        xl={{ size: 2, offset: 1 }}
+                        md={{ size: 4, offset: 4 }}
+                        lg={{ size: 2, offset: 5 }}
+                        xl={{ size: 2, offset: 5 }}
                     >
                         <FormGroup>
-                            <Label>Investment in</Label>
                             <InputGroup>
                                 <Input placeholder="Investment name" value={this.state.investmentName} onChange={this.handleChangeName} />
                             </InputGroup> 
@@ -89,12 +88,11 @@ class EditInvestment extends Component {
                     <Col
                         xs={{ size: 8, offset: 2 }}
                         sm={{ size: 4, offset: 4 }}
-                        md={{ size: 3, offset: 1 }}
-                        lg={{ size: 3, offset: 1 }}
-                        xl={{ size: 2, offset: 1 }}
+                        md={{ size: 4, offset: 4 }}
+                        lg={{ size: 2, offset: 5 }}
+                        xl={{ size: 2, offset: 5 }}
                     >
                         <FormGroup>
-                            <Label>Invested amount</Label>
                             <InputGroup>
                                 <Input placeholder="Invested amount" value={this.state.investedAmount} onChange={this.handleChangeAmount} />
                             </InputGroup> 
@@ -103,12 +101,11 @@ class EditInvestment extends Component {
                     <Col
                         xs={{ size: 8, offset: 2 }}
                         sm={{ size: 4, offset: 4 }}
-                        md={{ size: 3, offset: 1 }}
-                        lg={{ size: 3, offset: 1 }}
-                        xl={{ size: 2, offset: 1 }}
+                        md={{ size: 4, offset: 4 }}
+                        lg={{ size: 2, offset: 5 }}
+                        xl={{ size: 2, offset: 5 }}
                     >
                         <FormGroup>
-                            <Label>Link</Label>
                             <InputGroup>
                                 <Input placeholder="Link" value={this.state.investmentLink} onChange={this.handleChangeLink} />
                             </InputGroup> 
@@ -117,12 +114,11 @@ class EditInvestment extends Component {
                     <Col
                         xs={{ size: 8, offset: 2 }}
                         sm={{ size: 4, offset: 4 }}
-                        md={{ size: 3, offset: 1 }}
-                        lg={{ size: 3, offset: 1 }}
-                        xl={{ size: 2, offset: 1 }}
+                        md={{ size: 4, offset: 4 }}
+                        lg={{ size: 2, offset: 5 }}
+                        xl={{ size: 2, offset: 5 }}
                     >
                         <FormGroup>
-                            <Label>Description</Label>
                             <InputGroup>
                                 <Input placeholder="Description" value={this.state.investmentDescription} onChange={this.handleChangeDescription} />
                             </InputGroup> 
@@ -131,11 +127,11 @@ class EditInvestment extends Component {
                     <Col
                         xs={{ size: 8, offset: 2 }}
                         sm={{ size: 4, offset: 4 }}
-                        md={{ size: 3, offset: 1 }}
-                        lg={{ size: 3, offset: 1 }}
-                        xl={{ size: 2, offset: 1 }}
+                        md={{ size: 4, offset: 4 }}
+                        lg={{ size: 2, offset: 5 }}
+                        xl={{ size: 2, offset: 5 }}
                     >
-                        <Button color="secondary" onClick={this.updateInvestment}>Save</Button>
+                        <Button color="secondary" onClick={this.updateInvestment} block>Save</Button>
                     </Col>
                 </Row>
             </div>

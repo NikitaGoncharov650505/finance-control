@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
-import { Button } from 'reactstrap';
+import {
+    Row,
+    Col,
+    Button,
+} from 'reactstrap';
 import AuthService from '../AuthService';
 import './Landing.styles.css';
 
@@ -38,11 +42,33 @@ class Landing extends Component {
                         <Button color="secondary" onClick={this.signup}>Sign Up</Button>
                     </div>
                 </div>
-                <div className="landing-content">
-                    <div>
-                        Landing
-                    </div>
-                </div>   
+                <Row>
+                    <Col
+                        xs={{ size: 8, offset: 2 }}
+                        sm={{ size: 6, offset: 3 }}
+                        md={{ size: 6, offset: 3 }}
+                        lg={{ size: 4, offset: 4 }}
+                        xl={{ size: 4, offset: 4 }}
+
+                    >
+                        <h1 className="landing-title">Welcome to Finance Control</h1>
+                    </Col>
+                    <Col
+                        xs={{ size: 8, offset: 2 }}
+                        sm={{ size: 6, offset: 3 }}
+                        md={{ size: 6, offset: 3 }}
+                        lg={{ size: 4, offset: 4 }}
+                        xl={{ size: 8, offset: 2 }}
+
+                    >
+                        <h4 className="landing-text">
+                            This application will help you to manage your investment. Here you can be absolutely sure,
+                            that you personal information will be protected. It is not necessary for you to use your real
+                            personal information for registration. Click Sign Up button to start usage of the application
+                        </h4>
+                    </Col>
+                </Row>
+                  
             </div>
         );
     }

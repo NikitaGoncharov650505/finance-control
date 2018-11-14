@@ -39,3 +39,14 @@
 .landing-navigation-link:focus {
     outline:0;
 }
+
+.landing-title {
+    width: 100%;
+    text-align: center;
+    margin-top: 50px;
+}
+
+.landing-text {
+    width: 100%;
+    margin-top: 30px;
+}

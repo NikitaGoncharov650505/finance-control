@@ -4,7 +4,6 @@ import {
     Row,
     Col,
     FormGroup,
-    Label,
     Input,
     InputGroup,
     Button,
@@ -30,7 +29,7 @@ class CreateInvestment extends Component {
         const { match } = this.props;
         const userId = match.params.id;
         const { investmentName, investedAmount, investmentLink, investmentDescription } = this.state;
-        const result = await this.UserService.createInvestment( userId, investmentName, investedAmount, investmentLink, investmentDescription);
+        await this.UserService.createInvestment( userId, investmentName, investedAmount, investmentLink, investmentDescription);
         const { history } = this.props;
         history.goBack();
     }
@@ -59,12 +58,11 @@ class CreateInvestment extends Component {
                     <Col
                         xs={{ size: 8, offset: 2 }}
                         sm={{ size: 4, offset: 4 }}
-                        md={{ size: 3, offset: 1 }}
-                        lg={{ size: 3, offset: 1 }}
-                        xl={{ size: 2, offset: 1 }}
+                        md={{ size: 4, offset: 4 }}
+                        lg={{ size: 2, offset: 5 }}
+                        xl={{ size: 2, offset: 5 }}
                     >
                         <FormGroup>
-                            <Label>Investment in</Label>
                             <InputGroup>
                                 <Input placeholder="Investment name" value={this.state.investmentName} onChange={this.handleChangeName} />
                             </InputGroup> 
@@ -73,12 +71,11 @@ class CreateInvestment extends Component {
                     <Col
                         xs={{ size: 8, offset: 2 }}
                         sm={{ size: 4, offset: 4 }}
-                        md={{ size: 3, offset: 1 }}
-                        lg={{ size: 3, offset: 1 }}
-                        xl={{ size: 2, offset: 1 }}
+                        md={{ size: 4, offset: 4 }}
+                        lg={{ size: 2, offset: 5 }}
+                        xl={{ size: 2, offset: 5 }}
                     >
                         <FormGroup>
-                            <Label>Invested amount</Label>
                             <InputGroup>
                                 <Input placeholder="Invested amount" value={this.state.investedAmount} onChange={this.handleChangeAmount} />
                             </InputGroup> 
@@ -87,12 +84,11 @@ class CreateInvestment extends Component {
                     <Col
                         xs={{ size: 8, offset: 2 }}
                         sm={{ size: 4, offset: 4 }}
-                        md={{ size: 3, offset: 1 }}
-                        lg={{ size: 3, offset: 1 }}
-                        xl={{ size: 2, offset: 1 }}
+                        md={{ size: 4, offset: 4 }}
+                        lg={{ size: 2, offset: 5 }}
+                        xl={{ size: 2, offset: 5 }}
                     >
                         <FormGroup>
-                            <Label>Link</Label>
                             <InputGroup>
                                 <Input placeholder="Link" value={this.state.investmentLink} onChange={this.handleChangeLink} />
                             </InputGroup> 
@@ -101,12 +97,11 @@ class CreateInvestment extends Component {
                     <Col
                         xs={{ size: 8, offset: 2 }}
                         sm={{ size: 4, offset: 4 }}
-                        md={{ size: 3, offset: 1 }}
-                        lg={{ size: 3, offset: 1 }}
-                        xl={{ size: 2, offset: 1 }}
+                        md={{ size: 4, offset: 4 }}
+                        lg={{ size: 2, offset: 5 }}
+                        xl={{ size: 2, offset: 5 }}
                     >
                         <FormGroup>
-                            <Label>Description</Label>
                             <InputGroup>
                                 <Input placeholder="Description" value={this.state.investmentDescription} onChange={this.handleChangeDescription} />
                             </InputGroup> 
@@ -115,11 +110,11 @@ class CreateInvestment extends Component {
                     <Col
                         xs={{ size: 8, offset: 2 }}
                         sm={{ size: 4, offset: 4 }}
-                        md={{ size: 3, offset: 1 }}
-                        lg={{ size: 3, offset: 1 }}
-                        xl={{ size: 2, offset: 1 }}
+                        md={{ size: 4, offset: 4 }}
+                        lg={{ size: 2, offset: 5 }}
+                        xl={{ size: 2, offset: 5 }}
                     >
-                        <Button color="secondary" onClick={this.createInvestment}>Create</Button>
+                        <Button color="secondary" onClick={this.createInvestment} block>Create</Button>
                     </Col>
                 </Row>
             </div>
