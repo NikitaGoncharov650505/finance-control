@@ -10,6 +10,7 @@ const router = new Router()
 const jwtMiddleware = koaJWT({ secret: 'gna secret'});
 
 mongoose.connect('mongodb://testUser:testUser123456789@ds161653.mlab.com:61653/test2');
+
 const userSchema = new mongoose.Schema(
     {
         id: { type: String },
@@ -18,9 +19,18 @@ const userSchema = new mongoose.Schema(
     },
     { timestamps: true }
 );
-
 const userModel = mongoose.model('users', userSchema);
 
+const investmentSchema = new mongoose.Schema(
+    {
+        userId: { type: String },
+        investedAmount: { type: String },
+        investmentName: { type: String },
+    },
+    { timestamps: true }
+);
+
+const investmentModel = mongoose.model('investments', investmentSchema);
 
 router.post('/login', bodyParser(), async (ctx) => {
     const { username, password } = ctx.request.body;
@@ -41,6 +51,42 @@ router.post('/signup', bodyParser(), async (ctx) => {
         return;
     }
     ctx.body = { user }   
+});
+
+router.post('/create-investment', jwtMiddleware, bodyParser(), async (ctx) => {
+    const { userId, investedAmount, investmentName } = ctx.request.body;
+    const investment = await investmentModel.create({ userId, investedAmount, investmentName });
+    if (!investment) {
+        return;
+    }
+    ctx.body = { investment }   
+});
+
+router.post('/delete-investment', jwtMiddleware, bodyParser(), async (ctx) => {
+    const { investmentId } = ctx.request.body;
+    const investment = await investmentModel.remove({ "_id": investmentId });
+    if (!investment) {
+        return;
+    }
+    ctx.body = { investment }
+});
+
+router.post('/delete-investment', jwtMiddleware, bodyParser(), async (ctx) => {
+    const { investmentId } = ctx.request.body;
+    const investment = await investmentModel.remove({ "_id": investmentId });
+    if (!investment) {
+        return;
+    }
+    ctx.body = { investment }
+});
+
+router.post('/edit-investment', jwtMiddleware, bodyParser(), async (ctx) => {
+    const { investmentId, investedAmount, investmentName } = ctx.request.body;
+    const investment = await investmentModel.update({ "_id": investmentId }, { $set: { investedAmount, investmentName }});
+    if (!investment) {
+        return;
+    }
+    ctx.body = { investment }
 });
 
 router.get('/', jwtMiddleware, (ctx) => {
