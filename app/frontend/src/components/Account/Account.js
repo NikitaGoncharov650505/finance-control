@@ -8,8 +8,16 @@ import {
     InputGroup,
 } from 'reactstrap'; 
 import InvestmentList from '../InvestmentList/InvestmentList';
+import UserService from '../UserService';
+import decode from 'jwt-decode';
 
 export default class Account extends Component {
+    constructor(domain) {
+        super();
+        this.UserService = new UserService();
+        this.domain = domain || 'http://localhost:8080';
+    }
+
     state = {
         investmentsListData: [
             {
@@ -34,9 +42,34 @@ export default class Account extends Component {
         searchInvestmentName: '',
     };
 
-    componentDidMount() {
-        console.log(this.props.user);
-        
+    loggedIn = () => {
+        // Checks if there is a saved token and it's still valid
+        const token = this.getToken()
+        return !!token && !this.isTokenExpired(token) // handwaiving here
+    }
+
+    getToken = () => {
+        // Retrieves the user token from localStorage
+        return localStorage.getItem('id_token')
+    }
+
+    isTokenExpired = (token) => {
+        try {
+            const decoded = decode(token);
+            if (decoded.exp < Date.now() / 1000) {
+                return true;
+            }
+            else
+                return false;
+        }
+        catch (err) {
+            return false;
+        }
+    }
+
+    async componentDidMount() {
+        const value = await this.UserService.getInvestments(this.props.user.id);
+        this.setState({investmentsListData: value.investments});
     }
 
     

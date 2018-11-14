@@ -84,6 +84,7 @@ router.post('/edit-investment', jwtMiddleware, bodyParser(), async (ctx) => {
 
 router.post('/get-investments', jwtMiddleware, bodyParser(), async(ctx) => {
     const { userId } = ctx.request.body;
+    console.log(userId);
     const investments = await investmentModel.find({ userId });
     if (!investments) {
         return;
