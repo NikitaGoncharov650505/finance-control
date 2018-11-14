@@ -7,6 +7,7 @@ import {
     Label,
     Input,
     InputGroup,
+    Button,
 } from 'reactstrap'; 
 import InvestmentList from '../InvestmentList/InvestmentList';
 import UserService from '../UserService';
@@ -32,6 +33,13 @@ class Account extends Component {
         this.setState({investmentsListData: value.investments});
     }
 
+    createInvestment = () => {
+        const { history, user } = this.props;
+        history.push({
+          pathname: `/create-investment/${user.id}`,
+        });
+    }
+
     handleChangeSearch = (event) => {
         this.setState({ searchInvestmentName: event.target.value });
     }
@@ -40,6 +48,7 @@ class Account extends Component {
         return (
             <div>
                 <div className="projects-catalog-wrapper">
+                    
                     <Row>
                         <Col
                             xs={{ size: 8, offset: 2 }}
@@ -52,7 +61,8 @@ class Account extends Component {
                                 <Label>Search</Label>
                                 <InputGroup>
                                     <Input placeholder="Search" value={this.state.searchInvestmentName} onChange={this.handleChangeSearch} />
-                                </InputGroup> 
+                                </InputGroup>
+                                <Button color="secondary" onClick={this.createInvestment}>+</Button>
                             </FormGroup>
                         </Col>
                         <Col

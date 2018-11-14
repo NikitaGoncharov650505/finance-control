@@ -99,6 +99,21 @@ export default class UserService {
         })
     }
 
+    createInvestment = ( userId, investmentName, investedAmount, investmentLink, investmentDescription) => {
+        return this.fetch(`${this.domain}/create-investment`, {
+            method: 'POST',
+            body: JSON.stringify({
+                userId,
+                investmentName,
+                investedAmount,
+                investmentLink,
+                investmentDescription
+            })
+        }).then(res => {
+            return res;
+        })
+    }
+
     _checkStatus(response) {
         if (response.status >= 200 && response.status < 300) {
             return response

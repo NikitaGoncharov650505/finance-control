@@ -5,6 +5,7 @@ import AuthService from './components/AuthService';
 import withAuth from './components/withAuth';
 import Account from './components/Account/Account.js';
 import EditInvestment from './components/EditInvestment/EditInvestment.js';
+import CreateInvestment from './components/CreateInvestment/CreateInvestment.js';
 
 import './App.css';
 
@@ -24,7 +25,8 @@ class App extends Component {
           <Header handleLogout={this.handleLogout} />
           <div>
               <Route path="/account" render={() => <Account user={this.props.user} />} />
-              <Route path="/edit-investment/:id" component={EditInvestment} />    
+              <Route path="/edit-investment/:id" component={EditInvestment} />   
+              <Route path="/create-investment/:id" component={CreateInvestment} /> 
             </div>
         </div>
       </Router>
