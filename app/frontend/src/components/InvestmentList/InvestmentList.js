@@ -4,6 +4,7 @@ import { Row, Col } from 'reactstrap';
 
 export default class InvestmentList extends Component {
     render() {
+        console.log(this.props);
         return (
             <Row>
                 <Col>
@@ -11,11 +12,13 @@ export default class InvestmentList extends Component {
                     .filter((element) => element.investmentName.toLowerCase().includes(this.props.searchInvestmentName.toLowerCase()))
                     .map((element) => 
                         <Investment
-                            key={element.investmentName}
+                            key={element._id}
+                            investmentId={element._id}
                             investmentName={element.investmentName}
                             investedAmount={element.investedAmount}
                             investmentLink={element.investmentLink}
                             investmentDescription={element.investmentDescription}
+                            updateInvestments={this.props.updateInvestments}
                         />)
                     }
                 </Col>

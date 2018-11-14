@@ -7,9 +7,8 @@ export default class UserService {
     }
 
     loggedIn() {
-        // Checks if there is a saved token and it's still valid
         const token = this.getToken()
-        return !!token && !this.isTokenExpired(token) // handwaiving here
+        return !!token && !this.isTokenExpired(token)
     }
 
     isTokenExpired(token) {
@@ -31,7 +30,6 @@ export default class UserService {
     }
 
     getToken() {
-        // Retrieves the user token from localStorage
         return localStorage.getItem('id_token')
     }
 
@@ -64,8 +62,18 @@ export default class UserService {
         })
     }
 
+    deleteInvestment = (investmentId) => {
+        return this.fetch(`${this.domain}/delete-investment`, {
+            method: 'POST',
+            body: JSON.stringify({
+                investmentId
+            })
+        }).then(res => {
+            return res;
+        })
+    }
+
     _checkStatus(response) {
-        // raises an error in case response status is not a success
         if (response.status >= 200 && response.status < 300) {
             return response
         } else {
