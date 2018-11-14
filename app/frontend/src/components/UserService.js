@@ -1,7 +1,6 @@
 import decode from 'jwt-decode';
 export default class UserService {
-    constructor(domain) {
-        this.domain = domain || 'http://localhost:8080'
+    constructor() {
         this.fetch = this.fetch.bind(this)
         this.getProfile = this.getProfile.bind(this)
     }
@@ -52,7 +51,7 @@ export default class UserService {
     }
 
     getInvestments = (userId) => {
-        return this.fetch(`${this.domain}/get-investments`, {
+        return this.fetch(`/get-investments`, {
             method: 'POST',
             body: JSON.stringify({
                 userId
@@ -63,7 +62,7 @@ export default class UserService {
     }
 
     getInvestment = (investmentId) => {
-        return this.fetch(`${this.domain}/get-investment`, {
+        return this.fetch(`/get-investment`, {
             method: 'POST',
             body: JSON.stringify({
                 investmentId
@@ -74,7 +73,7 @@ export default class UserService {
     }
 
     deleteInvestment = (investmentId) => {
-        return this.fetch(`${this.domain}/delete-investment`, {
+        return this.fetch(`/delete-investment`, {
             method: 'POST',
             body: JSON.stringify({
                 investmentId
@@ -85,7 +84,7 @@ export default class UserService {
     }
 
     updateInvestment = (investmentId, investmentName, investedAmount, investmentLink, investmentDescription) => {
-        return this.fetch(`${this.domain}/edit-investment`, {
+        return this.fetch(`/edit-investment`, {
             method: 'POST',
             body: JSON.stringify({
                 investmentId,
@@ -100,7 +99,7 @@ export default class UserService {
     }
 
     createInvestment = ( userId, investmentName, investedAmount, investmentLink, investmentDescription) => {
-        return this.fetch(`${this.domain}/create-investment`, {
+        return this.fetch(`/create-investment`, {
             method: 'POST',
             body: JSON.stringify({
                 userId,

@@ -1,7 +1,6 @@
 import decode from 'jwt-decode';
 export default class AuthService {
-    constructor(domain) {
-        this.domain = domain || 'http://localhost:8080'
+    constructor() {
         this.fetch = this.fetch.bind(this)
         this.login = this.login.bind(this)
         this.getProfile = this.getProfile.bind(this)
@@ -9,7 +8,7 @@ export default class AuthService {
 
     login(username, password) {
         // Get a token
-        return this.fetch(`${this.domain}/login`, {
+        return this.fetch(`/login`, {
             method: 'POST',
             body: JSON.stringify({
                 username,
@@ -22,7 +21,7 @@ export default class AuthService {
     }
 
     signUp(username, password) {
-        return this.fetch(`${this.domain}/signup`, {
+        return this.fetch(`/signup`, {
             method: 'POST',
             body: JSON.stringify({
                 username,

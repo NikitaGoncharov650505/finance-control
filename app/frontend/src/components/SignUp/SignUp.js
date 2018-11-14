@@ -28,7 +28,11 @@ class SignUp extends Component {
         if (username && password && passwordConfirmation === password) {
             this.Auth.signUp(this.state.username, this.state.password, this.state.passwordConfirmation)
             .then(res =>{
-               this.props.history.replace('/login');
+                if(res.error.length) {
+                    alert(res.error[0]);
+                } else {
+                    this.props.history.replace('/login');
+                }
             })
             .catch(err =>{
                 alert(err);
@@ -73,7 +77,7 @@ class SignUp extends Component {
                             className="form-item"
                             placeholder="Password confirmation"
                             name="passwordConfirmation"
-                            type="passwordConfirmation"
+                            type="password"
                             onChange={this.handleChange}
                         />
                         <input

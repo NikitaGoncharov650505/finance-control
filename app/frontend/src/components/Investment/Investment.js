@@ -9,10 +9,9 @@ import UserService from '../UserService';
 import './Investment.styles.css';
 
 class Investment extends Component {
-    constructor(domain) {
+    constructor() {
         super();
         this.UserService = new UserService();
-        this.domain = domain || 'http://localhost:8080';
     }
 
     deleteInvestment = async () => {

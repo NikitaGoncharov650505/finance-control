@@ -55,15 +55,18 @@ router.post('/signup', bodyParser(), async (ctx) => {
     const { username, password } = ctx.request.body;
     const salt = await bcrypt.genSalt(saltRounds);
     const hash = await bcrypt.hash(password, salt);
-    const user = await userModel.create({
-        username, 
-        password: hash
-    });
-    
-    if (!user) {
-        return;
+    const userDB = await userModel.findOne({ "username": username });
+    if (userDB) {
+        ctx.body = { user: {}, error: ["Login is used"] }
+    } else {
+        const user = await userModel.create({
+            username, 
+            password: hash
+        });
+        
+        if (!user) return;
+        ctx.body = { user, error: [] }
     }
-    ctx.body = { user }   
 });
 
 router.post('/create-investment', jwtMiddleware, bodyParser(), async (ctx) => {

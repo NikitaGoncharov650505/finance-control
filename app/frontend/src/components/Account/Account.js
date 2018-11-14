@@ -12,10 +12,9 @@ import InvestmentList from '../InvestmentList/InvestmentList';
 import UserService from '../UserService';
 
 class Account extends Component {
-    constructor(domain) {
+    constructor() {
         super();
         this.UserService = new UserService();
-        this.domain = domain || 'http://localhost:8080';
     }
 
     state = {

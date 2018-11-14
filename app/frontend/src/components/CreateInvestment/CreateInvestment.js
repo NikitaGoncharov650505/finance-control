@@ -12,10 +12,9 @@ import UserService from '../UserService';
 
 class CreateInvestment extends Component {
 
-    constructor(domain) {
+    constructor() {
         super();
         this.UserService = new UserService();
-        this.domain = domain || 'http://localhost:8080';
     }
 
     state = {
