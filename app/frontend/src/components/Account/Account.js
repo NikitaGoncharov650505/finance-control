@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import {
     Row,
     Col,
@@ -10,7 +11,7 @@ import {
 import InvestmentList from '../InvestmentList/InvestmentList';
 import UserService from '../UserService';
 
-export default class Account extends Component {
+class Account extends Component {
     constructor(domain) {
         super();
         this.UserService = new UserService();
@@ -74,3 +75,5 @@ export default class Account extends Component {
         );
     }
 };
+
+export default withRouter(Account);

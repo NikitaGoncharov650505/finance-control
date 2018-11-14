@@ -62,11 +62,37 @@ export default class UserService {
         })
     }
 
+    getInvestment = (investmentId) => {
+        return this.fetch(`${this.domain}/get-investment`, {
+            method: 'POST',
+            body: JSON.stringify({
+                investmentId
+            })
+        }).then(res => {
+            return res;
+        })
+    }
+
     deleteInvestment = (investmentId) => {
         return this.fetch(`${this.domain}/delete-investment`, {
             method: 'POST',
             body: JSON.stringify({
                 investmentId
+            })
+        }).then(res => {
+            return res;
+        })
+    }
+
+    updateInvestment = (investmentId, investmentName, investedAmount, investmentLink, investmentDescription) => {
+        return this.fetch(`${this.domain}/edit-investment`, {
+            method: 'POST',
+            body: JSON.stringify({
+                investmentId,
+                investmentName,
+                investedAmount,
+                investmentLink,
+                investmentDescription
             })
         }).then(res => {
             return res;

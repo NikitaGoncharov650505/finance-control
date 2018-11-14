@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { Button } from 'reactstrap';
 import AuthService from '../AuthService';
 import './Landing.styles.css';
 
-export default class Landing extends Component {
+class Landing extends Component {
     constructor(){
         super();
         this.Auth = new AuthService();
@@ -47,3 +47,5 @@ export default class Landing extends Component {
         );
     }
 };
+
+export default withRouter(Landing);

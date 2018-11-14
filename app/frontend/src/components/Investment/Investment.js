@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import {
     Row,
     Col,
@@ -6,7 +7,7 @@ import {
 } from 'reactstrap';
 import UserService from '../UserService';
 
-export default class Investment extends Component {
+class Investment extends Component {
     constructor(domain) {
         super();
         this.UserService = new UserService();
@@ -16,6 +17,13 @@ export default class Investment extends Component {
     deleteInvestment = async () => {
         await this.UserService.deleteInvestment(this.props.investmentId);
         this.props.updateInvestments();
+    }
+
+    editInvestment = async () => {
+        const { history } = this.props;
+        history.push({
+          pathname: `/edit-investment/${this.props.investmentId}`,
+        });
     }
 
     render() {
@@ -64,9 +72,20 @@ export default class Investment extends Component {
                     lg={{ size: 12, offset: 0 }}
                     xl={{ size: 12, offset: 0 }}
                 >
+                    <Button color="secondary" onClick={this.editInvestment}>Edit</Button>
+                </Col>
+                <Col
+                    xs={{ size: 12, offset: 0 }}
+                    sm={{ size: 12, offset: 0 }}
+                    md={{ size: 12, offset: 0 }}
+                    lg={{ size: 12, offset: 0 }}
+                    xl={{ size: 12, offset: 0 }}
+                >
                     <Button color="secondary" onClick={this.deleteInvestment}>X</Button>
                 </Col>
             </Row>
         );
     }
 };
+
+export default withRouter(Investment);

@@ -92,6 +92,16 @@ router.post('/get-investments', jwtMiddleware, bodyParser(), async(ctx) => {
     ctx.body = { investments };
 });
 
+router.post('/get-investment', jwtMiddleware, bodyParser(), async(ctx) => {
+    const { investmentId } = ctx.request.body;
+    const investment = await investmentModel.find({ "_id": investmentId });
+    if (!investment) {
+        return;
+    }
+    ctx.body = { investment };
+});
+
+
 router.get('/', jwtMiddleware, (ctx) => {
     ctx.body = "you are authenticated";
 });
