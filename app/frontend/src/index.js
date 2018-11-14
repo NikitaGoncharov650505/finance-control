@@ -8,6 +8,7 @@ import { Route, BrowserRouter as Router } from 'react-router-dom';
 import Login from './components/Login/Login';
 import Landing from './components/Landing/Landing';
 import SignUp from './components/SignUp/SignUp';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 ReactDOM.render(
     <Router>
