@@ -9,10 +9,34 @@ class SignUp extends Component {
         this.handleFormSubmit = this.handleFormSubmit.bind(this);
         this.Auth = new AuthService();
     }
+
     componentWillMount(){
         if(this.Auth.loggedIn())
             this.props.history.replace('/account');
     }
+
+    handleFormSubmit(e){
+        e.preventDefault();
+        if (this.state.passwordConfirmation === this.state.password) {
+            this.Auth.signUp(this.state.username, this.state.password, this.state.passwordConfirmation)
+            .then(res =>{
+               this.props.history.replace('/login');
+            })
+            .catch(err =>{
+                alert(err);
+            })
+        }
+        
+    }
+
+    handleChange(e){
+        this.setState(
+            {
+                [e.target.name]: e.target.value
+            }
+        )
+    }
+
     render() {
         return (
             <div className="center">
@@ -21,16 +45,23 @@ class SignUp extends Component {
                     <form onSubmit={this.handleFormSubmit}>
                         <input
                             className="form-item"
-                            placeholder="Username goes here..."
+                            placeholder="Username"
                             name="username"
                             type="text"
                             onChange={this.handleChange}
                         />
                         <input
                             className="form-item"
-                            placeholder="Password goes here..."
+                            placeholder="Password"
                             name="password"
                             type="password"
+                            onChange={this.handleChange}
+                        />
+                        <input
+                            className="form-item"
+                            placeholder="Password confirmation"
+                            name="passwordConfirmation"
+                            type="passwordConfirmation"
                             onChange={this.handleChange}
                         />
                         <input
@@ -42,26 +73,6 @@ class SignUp extends Component {
                 </div>
             </div>
         );
-    }
-
-    handleFormSubmit(e){
-        e.preventDefault();
-      
-        this.Auth.signUp(this.state.username,this.state.password)
-            .then(res =>{
-               this.props.history.replace('/login');
-            })
-            .catch(err =>{
-                alert(err);
-            })
-    }
-
-    handleChange(e){
-        this.setState(
-            {
-                [e.target.name]: e.target.value
-            }
-        )
     }
 }
 

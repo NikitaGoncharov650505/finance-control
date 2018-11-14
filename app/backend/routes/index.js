@@ -4,6 +4,10 @@ const Router = require('koa-router');
 const jwt = require('jsonwebtoken');
 const mongoose = require('mongoose');
 const koaJWT = require('koa-jwt');
+const bcrypt = require('bcrypt');
+
+
+const saltRounds = 10;
 
 const router = new Router()
 
@@ -37,7 +41,8 @@ const investmentModel = mongoose.model('investments', investmentSchema);
 router.post('/login', bodyParser(), async (ctx) => {
     const { username, password } = ctx.request.body;
     const userDB = await userModel.findOne({ "username": username });
-    if (username == userDB.username && password == userDB.password) {
+    const match = await bcrypt.compare(password, userDB.password);
+    if (username == userDB.username && match ) {
         const token = jwt.sign({ id: userDB._id, username: userDB.username }, 'gna secret', { expiresIn: 129600 }); // Sigining the token
         ctx.body = {token};
     } else {
@@ -48,7 +53,13 @@ router.post('/login', bodyParser(), async (ctx) => {
 
 router.post('/signup', bodyParser(), async (ctx) => {
     const { username, password } = ctx.request.body;
-    const user = await userModel.create({ username, password });
+    const salt = await bcrypt.genSalt(saltRounds);
+    const hash = await bcrypt.hash(password, salt);
+    const user = await userModel.create({
+        username, 
+        password: hash
+    });
+    
     if (!user) {
         return;
     }
