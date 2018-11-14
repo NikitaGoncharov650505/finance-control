@@ -23,7 +23,7 @@ class App extends Component {
       <Router>
         <div>
           <Header handleLogout={this.handleLogout} />
-          <div>
+          <div className="app-wrapper">
               <Route path="/account" render={() => <Account user={this.props.user} />} />
               <Route path="/edit-investment/:id" component={EditInvestment} />   
               <Route path="/create-investment/:id" component={CreateInvestment} /> 

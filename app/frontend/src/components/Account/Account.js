@@ -4,7 +4,6 @@ import {
     Row,
     Col,
     FormGroup,
-    Label,
     Input,
     InputGroup,
     Button,
@@ -47,30 +46,38 @@ class Account extends Component {
     render() {
         return (
             <div>
-                <div className="projects-catalog-wrapper">
+                <div className="account-page">
                     
                     <Row>
                         <Col
-                            xs={{ size: 8, offset: 2 }}
-                            sm={{ size: 4, offset: 4 }}
-                            md={{ size: 3, offset: 1 }}
-                            lg={{ size: 3, offset: 1 }}
-                            xl={{ size: 2, offset: 1 }}
+                            xs={{ size: 11, offset: 1 }}
+                            sm={{ size: 11, offset: 1 }}
+                            md={{ size: 11, offset: 1 }}
+                            lg={{ size: 11, offset: 1 }}
+                            xl={{ size: 11, offset: 1 }}
+                        >
+                            <Button color="secondary" onClick={this.createInvestment}>+</Button>
+                        </Col>
+                        <Col
+                            xs={{ size: 10, offset: 1 }}
+                            sm={{ size: 8, offset: 2 }}
+                            md={{ size: 8, offset: 2 }}
+                            lg={{ size: 6, offset: 3 }}
+                            xl={{ size: 6, offset: 3 }}
                         >
                             <FormGroup>
-                                <Label>Search</Label>
                                 <InputGroup>
                                     <Input placeholder="Search" value={this.state.searchInvestmentName} onChange={this.handleChangeSearch} />
                                 </InputGroup>
-                                <Button color="secondary" onClick={this.createInvestment}>+</Button>
+                                
                             </FormGroup>
                         </Col>
                         <Col
-                            xs={{ size: 12, offset: 0 }}
-                            sm={{ size: 12, offset: 0 }}
-                            md={{ size: 8, offset: 0 }}
-                            lg={{ size: 8, offset: 0 }}
-                            xl={{ size: 8, offset: 0 }}
+                            xs={{ size: 10, offset: 1 }}
+                            sm={{ size: 8, offset: 2 }}
+                            md={{ size: 8, offset: 2 }}
+                            lg={{ size: 6, offset: 3 }}
+                            xl={{ size: 6, offset: 3 }}
                         >
                             <InvestmentList
                                 investmentsListData={this.state.investmentsListData}
