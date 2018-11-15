@@ -10,6 +10,13 @@ class SignUp extends Component {
         this.Auth = new AuthService();
     }
 
+    state = {
+        passwordConfirmation: '',
+        password: '',
+        username: ''
+
+    }
+
     componentWillMount(){
         if(this.Auth.loggedIn())
             this.props.history.replace('/account');
@@ -17,7 +24,8 @@ class SignUp extends Component {
 
     handleFormSubmit(e){
         e.preventDefault();
-        if (this.state.passwordConfirmation === this.state.password) {
+        const { passwordConfirmation, password, username} = this.state;
+        if (username && password && passwordConfirmation === password) {
             this.Auth.signUp(this.state.username, this.state.password, this.state.passwordConfirmation)
             .then(res =>{
                this.props.history.replace('/login');
@@ -25,6 +33,10 @@ class SignUp extends Component {
             .catch(err =>{
                 alert(err);
             })
+        } else if(!this.state.username) {
+            alert('Username cannot be empty');
+        } else {
+            alert('Password and password confirmation should be the same and not empty');
         }
         
     }

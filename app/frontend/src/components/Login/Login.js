@@ -9,6 +9,12 @@ class Login extends Component {
         this.handleFormSubmit = this.handleFormSubmit.bind(this);
         this.Auth = new AuthService();
     }
+
+    state = {
+        username: '',
+        password: ''
+    }
+
     componentWillMount(){
         if(this.Auth.loggedIn())
             this.props.history.replace('/account');
@@ -17,7 +23,7 @@ class Login extends Component {
         return (
             <div className="center">
                 <div className="card">
-                    <h1>Login</h1>
+                    <h1>Sign In</h1>
                     <form onSubmit={this.handleFormSubmit}>
                         <input
                             className="form-item"
@@ -46,14 +52,19 @@ class Login extends Component {
 
     handleFormSubmit(e){
         e.preventDefault();
-      
-        this.Auth.login(this.state.username,this.state.password)
+        const { username, password } = this.state; 
+        if (username && password) {
+            this.Auth.login(username, password)
             .then(res =>{
                this.props.history.replace('/account');
             })
             .catch(err =>{
                 alert(err);
             })
+        } else {
+            alert('Username and Password cannot be empty');
+        }
+        
     }
 
     handleChange(e){

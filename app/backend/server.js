@@ -3,14 +3,25 @@ const logger = require('koa-morgan');
 const cors = require('koa-cors');
 const routes = require('./routes'); 
 
-const app = new Koa();
+class Server {
+    constructor() {
+        this.port = 8080;
+    }
 
-const koaOptions = {
-    origin: true,
-    credentials: true
-};
+    run() {
+        const app = new Koa();
 
-app.use(cors(koaOptions));
-app.use(logger('tiny'));
-app.use(routes);
-app.listen(8080);
+        const koaOptions = {
+            origin: true,
+            credentials: true
+        };
+        
+        app.use(cors(koaOptions));
+        app.use(logger('tiny'));
+        app.use(routes);
+        app.listen(this.port);
+    }
+} 
+
+const server = new Server();
+server.run();
