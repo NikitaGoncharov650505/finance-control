@@ -1,0 +1,52 @@
+.landing-header {
+    border: 1px solid gray;
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex;
+    justify-content: flex-end;
+    background-color: #212529;
+}
+
+.landing-content {
+}
+
+.landing-navigation {
+    width: 200px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.landing-content {
+    min-height: 600px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    font-size: 70px;
+}
+
+.landing-navigation-link {
+    color: #fff;
+    opacity: 100%;
+    text-decoration: none;
+    border: none;
+    background-color: #212529;
+}
+
+.landing-navigation-link:focus {
+    outline:0;
+}
+
+.landing-title {
+    width: 100%;
+    text-align: center;
+    margin-top: 50px;
+}
+
+.landing-text {
+    width: 100%;
+    margin-top: 30px;
+}
