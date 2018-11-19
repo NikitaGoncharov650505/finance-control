@@ -14,3 +14,4 @@ The application, which allows you to manage your investments
 - [Component diagram](https://github.com/NikitaGoncharov650505/finance-control/tree/master/documentation/Component%20Diagram)
 - [Deployment diagram](https://github.com/NikitaGoncharov650505/finance-control/tree/master/documentation/Deployment%20Diagram)
 - [Application link](https://finance-control-tritpo.herokuapp.com/)
+- [Testing folder](https://github.com/NikitaGoncharov650505/finance-control/tree/master/documentation/Testing)
